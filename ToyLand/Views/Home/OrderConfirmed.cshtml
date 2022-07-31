@@ -1,0 +1,94 @@
+﻿@model ToyLand.Models.Order
+
+@{
+    ViewBag.Title = "OrderConfirmed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                    <a href="./home.html"><i class="fa fa-home"></i> Home</a>
+                    <a href="./shop.html">Shop</a>
+                    <span>Shopping Cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>OrderConfirmed</h3>
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Customer.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Customer.Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.OrderDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.OrderDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.OrderTime)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.OrderTime)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DeliveryDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DeliveryDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PaymentMethod)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PaymentMethod)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Details)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Details)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Status)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
