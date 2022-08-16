@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ToyLand.Models.Toy>
+﻿@using ToyLand.Models
+@model IEnumerable<ToyLand.Models.Toy>
 
 @{
     ViewBag.Title = "Toys";
@@ -25,64 +26,34 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
                 <div class="filter-widget">
-                    <h4 class="fw-title">Categories</h4>
+                    <h4 class="fw-title">Categories </h4>
                     <ul class="filter-catagories">
-                        <li><a href="#">All Categories</a></li>
-                        <li><a href="#">Car Toys</a></li>
-                        <li><a href="#">Gun Toys</a></li>
-                        <li><a href="#">Air Planes</a></li>
-                        <li><a href="#">Rubber Toys</a></li>
-                        <li><a href="#">Games Toys</a></li>
+                        <li><a href="/Home/ViewToys/">All Categories</a></li>
+                        @foreach (var item in (List<Category>)ViewBag.Cats)
+                        {
+                            <li><a href="/Home/ViewToys/@item.CatID">@item.Name</a></li>
+                        }
+                       
+                        
                     </ul>
                 </div>
-                <div class="filter-widget">
-                    <h4 class="fw-title">Age Groups</h4>
-                    <ul class="filter-catagories">
-                        <li><a href="#">All Ages</a></li>
-                        <li><a href="#">1-3 Years</a></li>
-                        <li><a href="#">3-5 Years</a></li>
-                        <li><a href="#">5-10 Years</a></li>
-
-                    </ul>
-                </div>
-
-                <div class="filter-widget">
-                    <h4 class="fw-title">Price</h4>
-                    <div class="filter-range-wrap">
-                        <div class="range-slider">
-                            <div class="price-input">
-                                <input type="text" id="minamount">
-                                <input type="text" id="maxamount">
-                            </div>
-                        </div>
-                        <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                             data-min="33" data-max="98">
-                            <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                        </div>
-                    </div>
-                    <a href="#" class="filter-btn">Filter</a>
-                </div>
+               
 
             </div>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="product-show-option">
                     <div class="row">
                         <div class="col-lg-7 col-md-7">
-                            <div class="select-option">
-                                <select class="sorting">
-                                    <option value="">Default Sorting</option>
-                                    <option value="">Price Low to High</option>
-                                    <option value="">Price High to low</option>
+                            <form class="select-option">
+                                <select name="sorting" class="sorting">
+                                    <option>Default Sorting</option>
+                                    <option>Price Low to High</option>
+                                    <option>Price High to low</option>
+                                    <option>By Product Name</option>
+                                    <option>By Category Name</option>
                                 </select>
-                                <select class="p-show">
-                                    <option value="">Show:</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-5 text-right">
-                            <p>Show 01- 09 Of 36 Product</p>
+                                <input type="submit" value="Sort Now" class="btn btn-success"/>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -101,7 +72,7 @@
                                         </div>
                                         <ul>
                                             <li class="w-icon active"><a href="/Home/AddtoCart/@item.ToyID"><i class="ui-icon-cart"></i> Add to Cart</a></li>
-                                            <li class="w-icon active"><a href="/Home/Details/@item.ToyID"><i class="icon_bag_alt"></i> Details</a></li>
+                                            <li class="w-icon active"><a href="/Home/ToysDetails/@item.ToyID"><i class="icon_bag_alt"></i> Details</a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">

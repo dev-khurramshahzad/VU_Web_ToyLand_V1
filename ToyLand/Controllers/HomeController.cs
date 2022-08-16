@@ -89,13 +89,13 @@ namespace ToyLand.Controllers
 
             return Redirect("/Home/Login");
         }
-
         public ActionResult Categories()
         {
             return View(db.Categories.ToList());
         }
         public ActionResult ViewToys(int? id)
         {
+            ViewBag.Cats = db.Categories.ToList();
             if (id == null)
             {
                 return View(db.Toys.ToList());
@@ -290,8 +290,26 @@ namespace ToyLand.Controllers
 
             return View(order);
         }
+        public ActionResult LoginAdmin()
+        {
+            return View();
+        }
+      
+        public ActionResult LoginAdminVerify(string email, string password)
+        {
+            var check = db.Admins.FirstOrDefault(x => x.Email == email && x.Password == password);
+            if (check == null)
+            {
+                return Content("<script>alert('Email or Password Incorrect....');window.history.back();</script>");
+            }
+            else
+            {
+                return Redirect("/Home/Admin");
+            }
+        }
 
-       
+
+
 
     }
 }
