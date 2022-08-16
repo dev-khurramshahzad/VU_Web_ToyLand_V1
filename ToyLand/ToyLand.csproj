@@ -444,6 +444,7 @@
     <Content Include="Content\js\owl.carousel.min.js" />
     <Content Include="Content\Sign in.jpg" />
     <Content Include="Content\𝐩𝐢𝐧 _ 𝐭𝐡𝐞𝐥𝐢𝐯𝐢𝐚𝐬𝐡𝐨𝐰.jpg" />
+    <Content Include="db_ToyLandTayyab.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
