@@ -32,7 +32,6 @@ namespace ToyLand.Controllers
 
             return View();
         }
-
         public ActionResult Login(string return_url)
         {
             ViewBag.return_url = return_url;
@@ -93,18 +92,34 @@ namespace ToyLand.Controllers
         {
             return View(db.Categories.ToList());
         }
-        public ActionResult ViewToys(int? id)
+        public ActionResult ViewToys(int? id, string sort, string search)
         {
             ViewBag.Cats = db.Categories.ToList();
-            if (id == null)
-            {
-                return View(db.Toys.ToList());
-            }
-            else
-            {
-                return View(db.Toys.Where(x => x.CatFID == id).ToList());
-            }
+            var toys = db.Toys.AsQueryable();
 
+            if (id != null)
+            {
+                toys = toys.Where(x => x.CatFID == id);
+            }
+            if (!string.IsNullOrEmpty(sort) && sort != "Default Sorting")
+            {
+                if (sort == "Price Low to High")
+                    toys = toys.OrderBy(x => x.SalePrice);
+
+                if (sort == "Price High to low")
+                    toys = toys.OrderByDescending(x => x.SalePrice);
+
+                if (sort == "By Product Name")
+                    toys = toys.OrderBy(x => x.Name);
+
+                if (sort == "By Category Name")
+                    toys = toys.OrderBy(x => x.Category.Name);
+            }
+            if (!string.IsNullOrEmpty(search))
+                toys = toys.Where(x => x.Name.Contains(search) || x.Category.Name.Contains(search));
+
+
+            return View(toys.ToList());
         }
         public ActionResult ToysDetails(int id)
         {
@@ -294,7 +309,6 @@ namespace ToyLand.Controllers
         {
             return View();
         }
-      
         public ActionResult LoginAdminVerify(string email, string password)
         {
             var check = db.Admins.FirstOrDefault(x => x.Email == email && x.Password == password);

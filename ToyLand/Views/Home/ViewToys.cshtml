@@ -44,15 +44,16 @@
                 <div class="product-show-option">
                     <div class="row">
                         <div class="col-lg-7 col-md-7">
-                            <form class="select-option">
-                                <select name="sorting" class="sorting">
+                            <form action="/Home/ViewToys" class="select-option">
+                                <select name="sort" class="sorting">
                                     <option>Default Sorting</option>
                                     <option>Price Low to High</option>
                                     <option>Price High to low</option>
                                     <option>By Product Name</option>
                                     <option>By Category Name</option>
                                 </select>
-                                <input type="submit" value="Sort Now" class="btn btn-success"/>
+                                <input class="form-control" placeholder="Search here..." type="text" name="search" style="width: 300px" />  &nbsp;&nbsp;
+                                <input type="submit" value="Search Now" class="btn btn-success" />
                             </form>
                         </div>
                     </div>
