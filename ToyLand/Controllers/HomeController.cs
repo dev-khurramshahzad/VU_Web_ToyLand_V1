@@ -44,6 +44,10 @@ namespace ToyLand.Controllers
         }
         public ActionResult LoginVerify(string email, string password, string return_url)
         {
+            if (string.IsNullOrEmpty(return_url))
+            {
+                return_url = "/Home/";
+            }
             var check = db.Customers.FirstOrDefault(x => x.Email == email && x.Password == password);
             if (check == null)
             {
@@ -228,8 +232,14 @@ namespace ToyLand.Controllers
             Session["Cart"] = Cart;
             return RedirectToAction("ShoppingCart");
         }
-        public ActionResult Checkout()
+        public ActionResult Checkout(string method)
         {
+            if (Session["Cart"] == null || ((List<CartItem>)Session["Cart"]).Count == 0)
+            {
+                TempData["State"] = "warning";
+                TempData["Message"] = "Cart is Empty Please add an Item to checkout";
+                return Redirect("/Home/ShoppingCart");
+            }
             Customer user = null;
             if (Session["LoggedInUser"] != null)
             {
@@ -254,9 +264,11 @@ namespace ToyLand.Controllers
             db.Orders.Add(order);
             db.SaveChanges();
 
+            double total = 0;
             List<CartItem> Cart = (List<CartItem>)Session["Cart"];
             for (int i = 0; i < Cart.Count; i++)
             {
+                total = total + (Cart[i].quantity * Cart[i].toy.SalePrice);
                 OrderDetail detail = new OrderDetail()
                 {
                     OrderFID = db.Orders.Max(x => x.OrderID),
@@ -280,13 +292,18 @@ namespace ToyLand.Controllers
             Session["Cart"] = null;
 
 
-            //Local
-            //return Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (float.Parse(amount) / 162.59) + "&business=JanjuaTailors@Shop.com&item_name=Electronics_items&return=https://localhost:44361/Shop/OrderConfirmed/" + ConfirmedOrderID);
+            if (method == "COD")
+            {
+                return Redirect("/Home/OrderConfirmed/" + ConfirmedOrderID);
 
-            //Web
-            //return Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (float.Parse(amount) / 162.59) + "&business=JanjuaTailors@Shop.com&item_name=Electronics_items&return=https://www.khurramappstudio.com/Shop/OrderConfirmed/" + ConfirmedOrderID);
+            }
+            else
+            {
+                return Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + total/ 220 + "&business=JanjuaTailors@Shop.com&item_name=ToyLand&return=https://localhost:44300/Home/OrderConfirmed/" + ConfirmedOrderID);
 
-            return Redirect("/Home/OrderConfirmed/" + ConfirmedOrderID);
+            }
+
+
         }
         public ActionResult OrderConfirmed(int? id)
         {

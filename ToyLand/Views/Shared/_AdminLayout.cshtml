@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-   
+
 
     <!-- Favicons -->
     <link href="~/Content/Admin/img/favicon.png" rel="icon">
@@ -18,6 +18,8 @@
     <!-- Custom styles for this template -->
     <link href="~/Content/Admin/css/style.css" rel="stylesheet">
     <link href="~/Content/Admin/css/style-responsive.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <!-- =======================================================
       Template Name: Dashio
@@ -28,6 +30,17 @@
 </head>
 
 <body>
+    @if (TempData["Message"] != null && (string)TempData["Message"] != "No")
+    {
+        <script type="text/javascript">
+                window.onload = function () {
+                    Swal.fire(
+                        '@TempData["State"]',
+                        '@TempData["Message"]',
+                        '@TempData["State"]')
+                };
+        </script>
+    }
     <section id="container">
         <!-- **********************************************************************************************************************************************************
             TOP BAR CONTENT & NOTIFICATIONS
@@ -41,7 +54,7 @@
             <a href="/Home/Admin" class="logo"><b>TOY<span>LAND</span></b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
-               
+
             </div>
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
@@ -67,7 +80,7 @@
                     <li><a href="/Adm_Reports/Stock"><i class="fa fa-arrow-right"></i><span>Stock Report</span></a></li>
                     <li><a href="/Adm_Reports/PLSReport"><i class="fa fa-arrow-right"></i><span>Profit/Loss Report</span></a></li>
                     <li><a href="/Adm_Customers"><i class="fa fa-arrow-right"></i><span>Manage Customers</span></a></li>
-                   
+
                 </ul>
                 <!-- sidebar menu end-->
             </div>
@@ -81,7 +94,7 @@
             <section class="wrapper site-min-height">
                 <div class="row mt">
                     <div class="col-lg-12">
-                       
+
 
                         @RenderBody()
 
@@ -100,7 +113,7 @@
                     &copy; Copyrights <strong>Toy Land</strong>. All Rights Reserved
                 </p>
                 <div class="credits">
-                   
+
                     Created by <a href="#">Tayyab[bc180407096]</a>
                 </div>
                 <a href="~/Content/Admin/blank.html#" class="go-top">
@@ -109,7 +122,7 @@
             </div>
         </footer>
         <!--footer end-->
-      
+
     </section>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="~/Content/Admin/lib/jquery/jquery.min.js"></script>

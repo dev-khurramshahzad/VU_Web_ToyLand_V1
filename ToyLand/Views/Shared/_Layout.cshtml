@@ -23,9 +23,22 @@
     <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
+    @if (TempData["Message"] != null && (string)TempData["Message"] != "No")
+    {
+        <script type="text/javascript">
+                window.onload = function () {
+                    Swal.fire(
+                        '@TempData["State"]',
+                        '@TempData["Message"]',
+                        '@TempData["State"]')
+                };
+        </script>
+    }
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -62,11 +75,11 @@
             <div class="inner-header">
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
-                        <div class="logo"style="font-size:larger;font-weight:800">
+                        <div class="logo" style="font-size:larger;font-weight:800">
                             Toy Land
                             @**<a href="./index.html">
-                                <img src="img/logo.png" alt="">
-                            </a>*@
+                                    <img src="img/logo.png" alt="">
+                                </a>*@
                         </div>
                     </div>
                     <div class="col-lg-7 col-lg-7">
@@ -79,52 +92,52 @@
                     </div>
                     <div class="col-lg-3 text-right col-lg-3">
                         <ul class="nav-right">
-                           
+
                             <li class="cart-icon">
                                 <a href="#">
                                     <i class="icon_bag_alt"></i>
                                     <span>0</span>
                                 </a>
                                 @*@<div class="cart-hover">
-                                    <div class="select-items">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="select-total">
-                                        <span>total:</span>
-                                        <h5>$120.00</h5>
-                                    </div>
-                                    <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                    </div>
-                                </div>*@
+                                        <div class="select-items">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
+                                                        <td class="si-text">
+                                                            <div class="product-selected">
+                                                                <p>$60.00 x 1</p>
+                                                                <h6>Kabino Bedside Table</h6>
+                                                            </div>
+                                                        </td>
+                                                        <td class="si-close">
+                                                            <i class="ti-close"></i>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
+                                                        <td class="si-text">
+                                                            <div class="product-selected">
+                                                                <p>$60.00 x 1</p>
+                                                                <h6>Kabino Bedside Table</h6>
+                                                            </div>
+                                                        </td>
+                                                        <td class="si-close">
+                                                            <i class="ti-close"></i>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="select-total">
+                                            <span>total:</span>
+                                            <h5>$120.00</h5>
+                                        </div>
+                                        <div class="select-button">
+                                            <a href="#" class="primary-btn view-card">VIEW CARD</a>
+                                            <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                        </div>
+                                    </div>*@
                             </li>
                             @*<li class="cart-price">$150.00</li>*@
                         </ul>
@@ -134,7 +147,7 @@
         </div>
         <div class="nav-item">
             <div class="container">
-                
+
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li><a href="/Home/">Home</a></li>
@@ -149,9 +162,9 @@
         </div>
     </header>
     <!-- Header End -->
-    
-    
-@RenderBody()
+
+
+    @RenderBody()
     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
@@ -159,7 +172,7 @@
                 <div class="col-lg-3">
                     <div class="footer-left">
                         <div class="footer-logo">
-                           <h2 class="text-white">Toy Land</h2>
+                            <h2 class="text-white">Toy Land</h2>
                         </div>
                         <ul>
                             <li>Address: Gujranwala, Punjab, Pakistan</li>

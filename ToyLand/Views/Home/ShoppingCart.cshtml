@@ -2,6 +2,13 @@
 
 @{
     double amount = 0;
+    List<CartItem> Cart = new List<CartItem>();
+    if (Session["Cart"] != null)
+    {
+       Cart =  (List<CartItem>)Session["Cart"];
+    }
+
+
     ViewBag.Title = "Categories";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -39,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in (List<CartItem>)Session["Cart"])
+                            @foreach (var item in Cart)
                             {
                                 amount += (@item.toy.SalePrice * item.quantity);
                                 <tr>
@@ -79,7 +86,8 @@
                                 <li class="subtotal">Subtotal <span>Rs. @amount</span></li>
                                 <li class="cart-total">Total <span>Rs. @amount</span></li>
                             </ul>
-                            <a href="/Home/Checkout" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                            <a href="/Home/Checkout?method=COD" class="proceed-btn">Chekout (Cash on Delivery)</a>
+                            <a href="/Home/Checkout?method=Online" class="proceed-btn">Chekout (Online Payment)</a>
                         </div>
                     </div>
                 </div>
